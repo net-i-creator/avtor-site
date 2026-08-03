@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model SiteSettings {
+  id            Int    @id @default(1)
+  heroTitle     String @default("SLVSAREVV")
+  heroSubtitle  String @default("Юрий Антонович Слюсарев")
+  heroTagline   String @default("Артист. Писатель. Голос эпохи.")
+  aboutText     String @default("")
+  aboutImageUrl String @default("")
+  contactEmail  String @default("press@slvsarevv.ru")
+  socialLinks   String @default("{}") // JSON: { telegram, vk, youtube, yandexMusic, spotify, appleMusic }
+  updatedAt     DateTime @updatedAt
+}
+
+model BiographyEntry {
+  id        String   @id @default(cuid())
+  period    String
+  title     String
+  body      String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Quote {
+  id        String   @id @default(cuid())
+  text      String
+  context   String   @default("")
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PressItem {
+  id            String   @id @default(cuid())
+  title         String
+  excerpt       String
+  body          String   @default("")
+  coverImageUrl String   @default("")
+  sourceName    String   @default("")
+  sourceUrl     String   @default("")
+  category      String   @default("GENERAL") // MUSIC | LITERATURE | GENERAL
+  publishedAt   DateTime @default(now())
+  slug          String   @unique
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Photo {
+  id        String   @id @default(cuid())
+  url       String
+  caption   String   @default("")
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Single {
+  id             String   @id @default(cuid())
+  title          String
+  coverImageUrl  String   @default("")
+  releaseYear    Int
+  streamingLinks String   @default("{}") // JSON: { yandexMusic, spotify, appleMusic, vk }
+  sortOrder      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
