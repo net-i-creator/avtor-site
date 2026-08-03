@@ -76,6 +76,22 @@ npm run dev
 
 Перед деплоем обязательно смените `NEXTAUTH_SECRET`, `ADMIN_EMAIL` и `ADMIN_PASSWORD_HASH`, а также укажите корректный `NEXTAUTH_URL`.
 
+### Быстрый деплой на Vercel (бесплатно)
+
+1. Откройте [vercel.com/new](https://vercel.com/new) и импортируйте репозиторий `net-i-creator/avtor-site`.
+2. Добавьте переменные окружения:
+
+```
+DATABASE_URL=file:/tmp/dev.db
+NEXTAUTH_URL=https://ваш-проект.vercel.app
+NEXTAUTH_SECRET=длинная-случайная-строка
+ADMIN_EMAIL=admin@slvsarevv.ru
+ADMIN_PASSWORD_HASH=$2b$10$VadcPwlwvWQSUksC16v9mulAgRDInaOPCyUJYDyrvE0stB5EMMFtG
+```
+
+3. Deploy. Публичный сайт с seed-контентом откроется сразу.  
+   На serverless правки из админки могут не сохраняться между cold start — для постоянной админки лучше VPS / Render / Railway.
+
 ### Serverless (Vercel и аналоги)
 
 Файловая SQLite и локальные загрузки **не** подходят для serverless-инстансов без доработок. Точечные замены без смены бизнес-логики:

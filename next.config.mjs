@@ -4,9 +4,11 @@ const nextConfig = {
     remotePatterns: [],
     unoptimized: false,
   },
-  // Include SQLite DB + migrations in the serverless function bundle (Vercel demo)
-  outputFileTracingIncludes: {
-    "/**": ["./prisma/**/*"],
+  experimental: {
+    // Include SQLite DB + migrations in the serverless function bundle (Vercel demo)
+    outputFileTracingIncludes: {
+      "/*": ["./prisma/**/*"],
+    },
   },
 };
 
